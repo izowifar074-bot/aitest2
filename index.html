@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>AI Chat Dock</title>
 <script>
-window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"],["$$","$$"]],processEscapes:true},svg:{fontCache:"global"},options:{skipHtmlTags:["script","noscript","style","textarea","code"]}};
+window.MathJax={tex:{inlineMath:[["\\(","\\)"],["$","$"]],displayMath:[["\\[","\\]"],["$$","$$"]],processEscapes:true},svg:{fontCache:"global"},options:{skipHtmlTags:["script","noscript","style","textarea","code"]}};
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <style>
@@ -20,10 +20,10 @@ window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"],["$$"
 <div class="btns"><button class="btn" id="loadModels">获取模型</button><button class="btn secondary" id="saveSettings">保存设置</button></div>
 <label>主对话模型</label><select id="chatModel"></select>
 <label>图片识别模型</label><select id="visionModel"></select>
-<label>系统提示词</label><textarea id="systemPrompt">你是一个清晰、可靠、善于解释的 AI 助手。回答时尽量结构清楚，必要时给出步骤。涉及数学公式时，优先使用 \(...\) 表示行内公式，使用 \[...\] 或 $$...$$ 表示独立公式。</textarea>
+<label>系统提示词</label><textarea id="systemPrompt">你是一个清晰、可靠、善于解释的 AI 助手。回答时尽量结构清楚，必要时给出步骤。涉及数学公式时，优先使用 \(...\) 表示行内公式，使用 \[...\] 或 $$...$$ 表示独立公式；如果已有内容使用 $...$，也可以保留。</textarea>
 <div class="btns"><button class="btn secondary" id="exportChat">导出对话</button><button class="btn danger" id="clearChat">清空对话</button></div>
 <div class="status" id="status">已填入默认 API 主机和 Qwen 模型。填写 API Key 后即可使用；也可以点击“获取模型”刷新模型列表。</div>
-<div class="hint">生成时只显示最新几行思考过程；完成后完整思考链会折叠保存，点击即可展开。默认图片识别模型已改为 qwen-vl-ocr-2025-11-20。</div>
+<div class="hint">生成时只显示最新几行思考过程；完成后完整思考链会折叠保存，点击即可展开。已支持 $...$、\(...\)、\[...\]、$$...$$ 公式渲染。</div>
 </div></aside>
 <main class="panel main"><div class="top"><div><strong>对话</strong><span class="pill" id="modelPill">未选择模型</span></div><button class="btn secondary mobile" id="toggleSettings">设置</button></div><div class="messages" id="messages"></div><div class="composer"><div class="attach"><label class="file">选择图片<input id="imageInput" type="file" accept="image/*" multiple hidden /></label><span id="imageInfo">未选择图片</span><button class="mini" id="clearImages" type="button">清空图片</button></div><div class="preview" id="preview"></div><div class="compose"><textarea id="prompt" placeholder="输入消息，Enter 发送，Shift + Enter 换行"></textarea><button class="btn" id="sendBtn">发送</button></div></div></main>
 </div>
